@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 dotenv.config({ path: "./config.env" });
-// const router = require("./");
+const router = require("./routes/ContactsRoutes");
 const { config } = require("process");
 const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use("/todoList", router);
+app.use("/", router);
 
 //connecting to db
 mongoose.connect(
