@@ -15,7 +15,7 @@ app.use("/", router);
 //connecting to db
 mongoose.connect(
   process.env.DATABASE_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true },
   (err, connection) => {
     if (err) {
       console.log(err);
