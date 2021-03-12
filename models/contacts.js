@@ -4,6 +4,8 @@ class Contacts {
     this.contactId = uniqid();
     this.firstName = firstName;
     this.lastName = lastName;
+    this.email = email;
+    this.phone = phone;
     this.status = "active";
   }
 }
