@@ -62,6 +62,33 @@ const createContact = (req, res, next) => {
       );
     });
 };
+//delete contact
+// const deleteContact = (req, res, next) => {
+//   // console.log(req.params.id);
+//   Contact.findOneAndDelete({ contactId: req.params.id })
+//     .then((data) => {
+//       console.log(data);
+//       sendResponse(201, "Successful", data, req, res);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       sendErrorMessage(
+//         new AppError(400, "unsuccessful", "Id to delete not found"),
+//         req,
+//         res
+//       );
+//     });
+// };
+const deleteContactById = async (req, res) => {
+  const { contactId } = req.params.id;
+  try {
+    let deleteContact = await Contacts.deleteOne({ contactId });
+    sendResponse(200, "Contact Deleted Successfully", deleteContact, req, res);
+  } catch (err) {
+    sendError(400, "Contact can't be deleted...", err, req, res);
+  }
+};
 module.exports.verifyPostRequest = verifyPostRequest;
 module.exports.getAllContacts = getAllContacts;
 module.exports.createContact = createContact;
+module.exports.deleteContactById = deleteContactById;
