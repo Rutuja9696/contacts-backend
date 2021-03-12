@@ -39,6 +39,29 @@ const getAllContacts = (req, res, next) => {
       );
     });
 };
-
+//add new contact
+const createContact = (req, res, next) => {
+  console.log(req.body);
+  const { firstName, lastName } = req.body;
+  let newContact = new Contacts({
+    firstName,
+    lastName,
+  });
+  newContact
+    .save()
+    .then((data) => {
+      console.log(data);
+      sendResponse(201, "Successful", data, req, res);
+    })
+    .catch((err) => {
+      console.log(err);
+      sendErrorMessage(
+        new AppError(400, "unsuccessful", "request body is inavlid"),
+        req,
+        res
+      );
+    });
+};
 module.exports.verifyPostRequest = verifyPostRequest;
 module.exports.getAllContacts = getAllContacts;
+module.exports.createContact = createContact;
